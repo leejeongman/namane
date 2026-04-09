@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>나마네 | 문화예술교육</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+      background: #fffdf9;
+      color: #333;
+    }
+
+    body {
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    /* 네비게이션 */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 60px;
+      background: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      position: relative;
+      z-index: 100;
+      overflow: visible;
+    }
+
+    .logo {
+      position: relative;
+      width: 35%;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 256px;
+      width: auto;
+      object-fit: contain;
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 101;
+    }
+
+    .nav-links a {
+      margin-left: 32px;
+      text-decoration: none;
+      color: #555;
+      font-size: 15px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .right-nav {
+      width: 65%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .nav-links a:hover { color: #ff7043; }
+
+    .btn-home {
+      text-decoration: none;
+      margin-left: 80px;
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+    }
+
+    .btn-home img {
+      width: auto;
+      height: auto;
+      transition: opacity 0.2s;
+    }
+
+    .btn-home:hover img { opacity: 0.8; }
+
+    /* 메인 레이아웃 */
+    main {
+      display: grid;
+      grid-template-columns: 35% 65%;
+      overflow: hidden;
+      min-height: 0;
+    }
+
+    /* 왼쪽: 히어로 + 소개 */
+    .left-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px 30px;
+      padding-top: 240px;
+      background: linear-gradient(160deg, #fff8f4 0%, #fff3e8 100%);
+      overflow-y: auto;
+      min-height: 0;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: #ffe0d4;
+      color: #ff7043;
+      font-size: 17px;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 50px;
+      margin-bottom: 14px;
+      letter-spacing: 0.5px;
+    }
+
+    .left-panel h1 {
+      font-size: 36px;
+      font-weight: 900;
+      line-height: 1.25;
+      color: #222;
+      margin-bottom: 12px;
+      letter-spacing: -1px;
+    }
+
+    .left-panel h1 span { color: #ff7043; }
+
+    .left-panel .hero-p {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: #ff7043;
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+      box-shadow: 0 4px 16px rgba(255,112,67,0.35);
+      margin-bottom: 24px;
+    }
+
+    .btn-primary:hover {
+      background: #f4511e;
+      transform: translateY(-2px);
+    }
+
+    .about-compact {
+      border-top: 1px solid #ffd4c0;
+      padding-top: 16px;
+    }
+
+    .about-compact p {
+      font-size: 12px;
+      color: #777;
+      line-height: 1.9;
+    }
+
+    /* 오른쪽 패널 */
+    .right-panel {
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+      overflow-y: auto;
+      min-height: 0;
+      height: 100%;
+    }
+
+    /* 통계 */
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      padding: 16px 30px;
+      background: #fff;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .banner {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+      border-bottom: 1px solid #f0f0f0;
+      background: #fff;
+      padding: 12px;
+      gap: 8px;
+    }
+
+    .banner img:first-child {
+      height: 60px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .banner img:last-child {
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+      display: block;
+      overflow: hidden;
+    }
+
+    .banner img:nth-child(2) {
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+      display: block;
+      border-radius: 8px;
+    }
+
+    /* 프로그램 타이틀 프레임 */
+    .program-title-frame {
+      width: 100%;
+      padding: 12px 12px 0;
+      background: #fff8f4;
+      border-bottom: 1px solid #ffe0d4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .program-title-frame img {
+      display: block;
+    }
+
+    .program-title-frame {
+      width: 100%;
+      padding: 12px 12px 0;
+      background: #fff8f4;
+      border-bottom: 1px solid #ffe0d4;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    /* 프로그램 이미지 */
+    .program-image {
+      width: 100%;
+      padding: 12px 12px 0;
+    }
+
+    .program-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+    }
+
+    /* 프로그램 카드 */
+    .cards-area {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      padding: 20px 30px;
+      align-content: center;
+    }
+
+    .card {
+      background: #fffdf9;
+      border-radius: 16px;
+      padding: 22px 18px;
+      box-shadow: 0 3px 16px rgba(0,0,0,0.07);
+      transition: transform 0.25s, box-shadow 0.25s;
+      text-align: center;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+
+    .card-icon {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .card h3 {
+      font-size: 15px;
+      font-weight: 800;
+      color: #222;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 12px;
+      color: #777;
+      line-height: 1.7;
+    }
+
+    /* 아이프레임 */
+    .content-frame {
+      width: 100%;
+      height: 500px;
+      border: none;
+      border-top: 2px solid #ffe0d4;
+      background: #fffdf9;
+      display: none;
+    }
+
+    /* CTA */
+    .cta {
+      background: #ff7043;
+      padding: 16px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .cta-text h2 {
+      font-size: 18px;
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .cta-text p {
+      font-size: 12px;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .btn-white {
+      display: inline-block;
+      background: #fff;
+      color: #ff7043;
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-white:hover { transform: translateY(-2px); }
+
+    /* 푸터 */
+    footer {
+      background: #222;
+      color: #888;
+      padding: 10px 60px;
+      text-align: center;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    footer span { color: #ff7043; }
+  </style>
+</head>
+<body>
+
+  <!-- 네비게이션 -->
+  <nav>
+    <div class="logo">
+      <img src="logo.png" alt="나마네 로고">
+    </div>
+    <a href="index.html" class="btn-home"><img src="homebutton.png" alt="홈"></a>
+    <div class="right-nav">
+      <div class="nav-links">
+        <a href="#">나마네소개</a>
+        <a href="#">프로그램</a>
+        <a href="#">활동</a>
+        <a href="#">협업문의</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- 왼쪽: 히어로 + 소개 -->
+    <div class="left-panel">
+      <div class="hero-badge">문화예술교육 전문기관</div>
+      <h1>예술로 <span>연결</span>되는<br>우리들의 이야기</h1>
+      <p class="hero-p">나마네는 모든 사람이 예술을 통해<br>자신을 표현하고 서로 이어지는 세상을 만듭니다.</p>
+      <a href="#" class="btn-primary">프로그램 알아보기</a>
+      <div class="about-compact">
+        <p>나마네는 <strong>문화예술교육</strong>을 통해 사람과 사람이 연결되는 따뜻한 공간입니다.<br>
+        어린이부터 어른까지, 누구나 예술의 힘으로 자신을 발견하고 성장할 수 있도록<br>
+        다양한 교육 프로그램과 커뮤니티 활동을 운영하고 있습니다.</p>
+      </div>
+    </div>
+
+    <!-- 오른쪽 -->
+    <div class="right-panel">
+      <div class="program-title-frame">
+        <img src="programtitle.png" alt="나마네 프로그램" style="cursor:pointer;" onclick="window.open('https://linktr.ee/namanecafe', '_blank')">
+      </div>
+
+      <div class="program-image">
+        <img src="program.png" alt="프로그램 소개" usemap="#image-map" id="program-img">
+        <map name="image-map">
+          <area target="content-frame" alt="팝아트" title="팝아트" href="program/program1.html" coords="14,13,365,347" shape="rect">
+          <area target="content-frame" alt="프랑스자수 기초" title="프랑스자수 기초" href="program/program2.html" coords="415,16,749,359" shape="rect">
+          <area target="content-frame" alt="프랑스자수 실기" title="프랑스자수 실기" href="program/program3.html" coords="794,13,1117,352" shape="rect">
+        </map>
+      </div>
+
+      <iframe name="content-frame" class="content-frame" src="about:blank"></iframe>
+
+      <div class="cards-area">
+        <div class="card">
+          <div class="card-icon">🖌️</div>
+          <h3>시각예술</h3>
+          <p>그림, 조형, 공예 등 다양한 시각 예술 활동을 통해 창의적 표현력을 키웁니다.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🎭</div>
+          <h3>공연예술</h3>
+          <p>연극, 뮤지컬, 퍼포먼스 등 무대 위에서 자신을 표현하는 경험을 제공합니다.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🎵</div>
+          <h3>음악예술</h3>
+          <p>악기, 노래, 리듬 활동으로 음악과 함께 감성과 협동심을 기릅니다.</p>
+        </div>
+      </div>
+
+      <div class="cta">
+        <div class="cta-text">
+          <h2>함께 시작해볼까요?</h2>
+          <p>나마네의 문화예술교육, 지금 바로 경험해보세요.</p>
+        </div>
+        <a href="#" class="btn-white">문의하기</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span>주식회사 나마네</span> | 문화예술교육 / 인쇄 / 굿즈 &nbsp;·&nbsp; © 2026 나마네. All rights reserved.
+  </footer>
+
+
+  <script>
+    function showFrame(url) {
+      const frame = document.querySelector('.content-frame');
+      frame.src = url;
+      frame.style.display = 'block';
+      frame.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function scaleImageMap() {
+      const img = document.getElementById('program-img');
+      if (!img || !img.naturalWidth) return;
+      const ratio = img.offsetWidth / img.naturalWidth;
+      document.querySelectorAll('map[name="image-map"] area').forEach(area => {
+        const orig = area.getAttribute('data-orig') || area.getAttribute('coords');
+        area.setAttribute('data-orig', orig);
+        area.setAttribute('coords', orig.split(',').map(c => Math.round(c * ratio)).join(','));
+      });
+    }
+
+    const img = document.getElementById('program-img');
+    img.complete ? scaleImageMap() : img.addEventListener('load', scaleImageMap);
+    window.addEventListener('resize', scaleImageMap);
+
+    document.querySelectorAll('map[name="image-map"] area').forEach(area => {
+      area.addEventListener('click', () => {
+        const frame = document.querySelector('.content-frame');
+        frame.style.display = 'block';
+        frame.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>
