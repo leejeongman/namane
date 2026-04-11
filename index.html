@@ -88,6 +88,26 @@
 
     .btn-home:hover img { opacity: 0.8; }
 
+    .btn-instagram {
+      text-decoration: none;
+      margin-left: 12px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      left: 30px;
+      top: 5px;
+    }
+
+    .btn-instagram img {
+      width: unset;
+      height: unset;
+      max-width: none;
+      max-height: none;
+      transition: opacity 0.2s;
+    }
+
+    .btn-instagram:hover img { opacity: 0.8; }
+
     /* 메인 레이아웃 */
     main {
       display: grid;
@@ -370,6 +390,7 @@
       <img src="logo.png" alt="나마네 로고">
     </div>
     <a href="index.html" class="btn-home"><img src="homebutton.png" alt="홈"></a>
+    <a href="https://www.instagram.com/namanegoods" target="_blank" class="btn-instagram"><img src="instagramicon.png" alt="인스타그램"></a>
     <div class="right-nav">
       <div class="nav-links">
         <a href="#">나마네소개</a>
