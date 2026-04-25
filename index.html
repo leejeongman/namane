@@ -381,21 +381,41 @@
         transform: none;
       }
 
+      .btn-group {
+        order: 2;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        width: 100%;
+      }
+
       .btn-home {
         margin: 0;
-        order: 2;
-        transform: scale(0.7);
-        transform-origin: center;
+        display: flex;
+        align-items: center;
+      }
+
+      .btn-home img {
+        height: 36px;
+        width: auto;
       }
 
       .btn-instagram {
         position: static;
         left: auto;
         top: auto;
-        margin-left: 24px;
-        order: 3;
-        transform: scale(0.75);
-        transform-origin: center;
+        margin: 0;
+        display: flex;
+        align-items: center;
+      }
+
+      .btn-instagram img {
+        height: 36px;
+        width: auto;
+        max-width: none;
+        max-height: none;
       }
 
       .btn-instagram img {
@@ -489,8 +509,10 @@
     <div class="logo">
       <img src="logo.png" alt="나마네 로고">
     </div>
-    <a href="index.html" class="btn-home"><img src="homebutton.png" alt="홈"></a>
-    <a href="https://www.instagram.com/namanegoods" target="_blank" class="btn-instagram"><img src="instagramicon.png" alt="인스타그램"></a>
+    <div class="btn-group">
+      <a href="index.html" class="btn-home"><img src="homebutton.png" alt="홈"></a>
+      <a href="https://www.instagram.com/namanegoods" target="_blank" class="btn-instagram"><img src="instagramicon.png" alt="인스타그램"></a>
+    </div>
     <div class="right-nav">
       <div class="nav-links">
         <a href="#">나마네소개</a>
