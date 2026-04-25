@@ -351,6 +351,9 @@
 
     footer span { color: #ff7043; }
 
+    /* 모바일 전용 메뉴 — PC에서 숨김 */
+    .mobile-nav { display: none; }
+
     /* ===== 모바일 반응형 (768px 이하) ===== */
     @media (max-width: 768px) {
 
@@ -395,11 +398,29 @@
         max-height: none;
       }
 
+      /* 모바일에서 nav 안의 메뉴바 숨김 */
       .right-nav {
-        width: 100%;
+        display: none;
+      }
+
+      /* 프로그램 타이틀 아래 모바일 전용 메뉴 */
+      .mobile-nav {
+        display: flex;
         justify-content: center;
-        padding-top: 8px;
-        border-top: 1px solid #f0f0f0;
+        padding: 10px 16px;
+        border-top: 1px solid #ffe0d4;
+        border-bottom: 1px solid #ffe0d4;
+        background: #fff8f4;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .mobile-nav a {
+        text-decoration: none;
+        color: #555;
+        font-size: 13px;
+        font-weight: 500;
+        padding: 4px 12px;
       }
 
       .nav-links a {
@@ -491,6 +512,14 @@
     <div class="right-top">
       <div class="program-title-frame">
         <img src="programtitle.png" alt="나마네 프로그램" style="cursor:pointer;" onclick="window.open('https://linktr.ee/namanecafe', '_blank')">
+      </div>
+
+      <!-- 모바일 전용 메뉴 -->
+      <div class="mobile-nav">
+        <a href="#">나마네소개</a>
+        <a href="#">프로그램</a>
+        <a href="#">활동</a>
+        <a href="#">협업문의</a>
       </div>
 
       <div class="program-image">
