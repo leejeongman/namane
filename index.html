@@ -110,6 +110,15 @@
 
     .btn-instagram:hover img { opacity: 0.8; }
 
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.2; }
+    }
+
+    .btn-instagram img {
+      animation: blink 1.2s ease-in-out infinite;
+    }
+
     /* 메인 레이아웃 */
     main {
       display: grid;
