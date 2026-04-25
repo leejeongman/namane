@@ -357,12 +357,14 @@
     /* ===== 모바일 반응형 (768px 이하) ===== */
     @media (max-width: 768px) {
 
-      /* 네비게이션: 세로 정렬 */
+      /* 네비게이션: 로고는 한줄, 홈+인스타는 나란히 */
       nav {
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: wrap;
         align-items: center;
+        justify-content: center;
         padding: 16px;
-        gap: 12px;
+        gap: 0;
       }
 
       .logo {
@@ -370,6 +372,7 @@
         height: 158px;
         position: static;
         justify-content: center;
+        order: 1;
       }
 
       .logo img {
@@ -380,15 +383,15 @@
 
       .btn-home {
         margin: 0;
-        justify-content: center;
+        order: 2;
       }
 
       .btn-instagram {
         position: static;
         left: auto;
         top: auto;
-        margin: 0;
-        justify-content: center;
+        margin-left: 24px;
+        order: 3;
       }
 
       .btn-instagram img {
